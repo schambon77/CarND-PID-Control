@@ -74,6 +74,7 @@ int main()
           } else if (steer_value < -1.0) {
         	  steer_value = -1.0;
           }
+          steer_value = rad2deg(steer_value);
 
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
@@ -85,7 +86,7 @@ int main()
           double throttle = 0.3 - brake;
 
           // DEBUG
-          std::cout << "Speed: " << speed << "Angle: " << angle << std::endl;
+          std::cout << "Speed: " << speed << " Angle: " << angle << std::endl;
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
