@@ -74,7 +74,6 @@ int main()
           } else if (steer_value < -1.0) {
         	  steer_value = -1.0;
           }
-          steer_value = rad2deg(steer_value);
 
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
