@@ -78,7 +78,7 @@ int main()
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
           if (brake > 0.25) {
-        	  brake = 2.5;
+        	  brake = 0.25;
           } else if (brake < 0.0) {
         	  brake = 0.0;
           }
