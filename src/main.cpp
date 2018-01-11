@@ -35,8 +35,8 @@ int main()
   PID pid;
   // TODO: Initialize the pid variable.
   double Kp = 0.2;
-  double Ki = 3.0;
-  double Kd = 0.004;
+  double Ki = 0.0;
+  double Kd = 0.00;
   pid.Init(Kp, Ki, Kd);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -62,7 +62,7 @@ int main()
           * another PID controller to control the speed!
           */
           pid.UpdateError(cte);
-          steer_value = -pid.TotalError();
+          steer_value = pid.TotalError();
           if (steer_value > 1.0) {
         	  steer_value = 1.0;
           } else if (steer_value < -1.0) {
