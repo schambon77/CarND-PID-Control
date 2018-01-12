@@ -77,12 +77,14 @@ int main()
 
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
-          if (brake > 0.25) {
-        	  brake = 0.25;
+          double maxThrottle = 0.5;
+          double maxBrake = 0.45;
+          if (brake > maxBrake) {
+        	  brake = maxBrake;
           } else if (brake < 0.0) {
         	  brake = 0.0;
           }
-          double throttle = 0.3 - brake;
+          double throttle = maxThrottle - brake;
 
           // DEBUG
           std::cout << "Speed: " << speed << " Angle: " << angle << std::endl;
