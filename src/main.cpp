@@ -77,8 +77,8 @@ int main()
 
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
-          double maxThrottle = 1.0;
-          double maxBrake = 0.95;
+          double maxThrottle = 0.4;
+          double maxBrake = 0.35;
           if (brake > maxBrake) {
         	  brake = maxBrake;
           } else if (brake < 0.0) {
