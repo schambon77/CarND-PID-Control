@@ -32,13 +32,14 @@ int main()
 {
   uWS::Hub h;
 
+  //PID control loop for steering angle
   PID pid;
-  // TODO: Initialize the pid variable.
   double Kp = 0.1;
   double Ki = 0.0001;
   double Kd = 10.0;
   pid.Init(Kp, Ki, Kd);
 
+  //PID control loop for throttle
   PID pid_t;
   double Kp_t = 1.0;
   double Ki_t = 0.001;
@@ -61,12 +62,7 @@ int main()
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
-          /*
-          * TODO: Calculate steering value here, remember the steering value is
-          * [-1, 1].
-          * NOTE: Feel free to play around with the throttle and speed. Maybe use
-          * another PID controller to control the speed!
-          */
+
           pid.UpdateError(cte);
           steer_value = pid.TotalError();
           if (steer_value > 1.0) {
@@ -87,7 +83,7 @@ int main()
           double throttle = maxThrottle - brake;
 
           // DEBUG
-          std::cout << "Speed: " << speed << " Angle: " << angle << std::endl;
+          //std::cout << "Speed: " << speed << " Angle: " << angle << std::endl;
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 
           json msgJson;
