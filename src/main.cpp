@@ -36,7 +36,7 @@ int main()
   // TODO: Initialize the pid variable.
   double Kp = 0.1;
   double Ki = 0.0001;
-  double Kd = 15.0;
+  double Kd = 10.0;
   pid.Init(Kp, Ki, Kd);
 
   PID pid_t;
@@ -77,8 +77,8 @@ int main()
 
           pid_t.UpdateError(cte);
           double brake = pid_t.TotalError();
-          double maxThrottle = 0.4;
-          double maxBrake = 0.35;
+          double maxThrottle = 0.3;
+          double maxBrake = 0.25;
           if (brake > maxBrake) {
         	  brake = maxBrake;
           } else if (brake < 0.0) {
